@@ -28,6 +28,7 @@ body {
 }
 
 #tabs table {
+  padding: 1em;
   background-color: #666;
   grid-area: 2 / 1 / 2 / 3 ;
   border: 1px solid black;
@@ -36,4 +37,14 @@ body {
 
 .hide {
   display: none;
+}
+
+/* invididual styling of tables ... adjust to taste! */
+
+#members tr td:nth-child(3) {
+  text-align: right;
+}
+
+#members tr td:nth-child(4) {
+  text-align: center;
 }
