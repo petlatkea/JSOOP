@@ -30,10 +30,10 @@ function displayMembers(members) {
     <tr>
       <td>${member.name}</td>
       <td>${member.active}</td>
-      <td>${member.birthday}</td>
-      <td>${member.age}</td>
-      <td>${member.junior}</td>
-      <td>${member.senior}</td>
+      <td class="date">${member.birthday.toLocaleString("da", {month: "short", day: "numeric", year: "numeric"})}</td>
+      <td>${member.getAge()}</td>
+      <td>${member.isJunior()}</td>
+      <td>${member.isSenior()}</td>
       <td>${member.email}</td>
     </tr>`;
 
@@ -50,7 +50,18 @@ function constructMember(memberdata) {
     email: memberdata.email,
     gender: memberdata.gender,
     image: memberdata.image,
-    hasPayed: memberdata.hasPayed
+    hasPayed: memberdata.hasPayed,
+    getAge() {
+      const diff = Date.now() - this.birthday.getTime();
+      const years = Math.floor(diff/1000/60/60/24/365);
+      return years;
+    },
+    isJunior() {
+      return this.getAge() < 18;
+    },
+    isSenior() {
+      return this.getAge() >= 18;
+    }
   }
 
   return MemberObject;
