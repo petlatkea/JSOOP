@@ -25,6 +25,17 @@ async function initApp() {
   memberList.render();
   resultList.render();
 
+  // make headlines sort the lists
+  document.querySelectorAll("table#members thead [data-action=sort]")
+  .forEach(sortButton => sortButton.addEventListener("click", ()=>{
+    memberList.sort(sortButton.dataset.sortBy);
+  }));
+
+  document.querySelectorAll("table#results thead [data-action=sort]")
+  .forEach(sortButton => sortButton.addEventListener("click", ()=>{
+    resultList.sort(sortButton.dataset.sortBy);
+  }))
+
   window.results = results;
   window.members = members;
 }

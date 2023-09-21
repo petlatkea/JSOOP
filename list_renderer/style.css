@@ -48,3 +48,8 @@ body {
 #members tr td:nth-child(4) {
   text-align: center;
 }
+
+/* a bit of help with actions */
+table thead th[data-action] {
+  cursor: pointer;
+} 
