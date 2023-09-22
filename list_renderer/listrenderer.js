@@ -1,15 +1,22 @@
 export function construct(list, container, itemRenderer) {
     const ListRenderer = {
-      list: list,
-      itemRenderer: itemRenderer,
+      //list: list,
+      //itemRenderer: itemRenderer,
+      renderers: list.map( item => Object.create(itemRenderer, { item: { value: item } })),
       container: document.querySelector(container),
       clear() {
         this.container.innerHTML = "";
       },
       render() {
-        for(const item of this.list) {
-            const html = this.itemRenderer.render(item);
+        for(const renderer of this.renderers) {
+            const html = renderer.render();
+            
             this.container.insertAdjacentHTML("beforeend", html);
+            const element = this.container.lastElementChild;
+
+            if(renderer.postRender) {
+                renderer.postRender(element);
+            }
         }
       },
       sortBy: undefined,
@@ -27,9 +34,9 @@ export function construct(list, container, itemRenderer) {
             this.sortDir = "asc";
         }
 
-        this.list.sort((a,b) => {
-            if( typeof a[this.sortBy] === "string") {
-                if( a[this.sortBy] > b[this.sortBy]) {
+        this.renderers.sort((a,b) => {
+            if( typeof a.item[this.sortBy] === "string") {
+                if( a.item[this.sortBy] > b.item[this.sortBy]) {
                     if( this.sortDir === "asc") {
                         return 1;
                     } else {
@@ -45,9 +52,9 @@ export function construct(list, container, itemRenderer) {
                 }
             } else {
                 if( this.sortDir === "asc") {
-                    return a[this.sortBy] - b[this.sortBy];
+                    return a.item[this.sortBy] - b.item[this.sortBy];
                 } else {
-                    return b[this.sortBy] - a[this.sortBy];
+                    return b.item[this.sortBy] - a.item[this.sortBy];
                 }
             }
         });
@@ -55,6 +62,10 @@ export function construct(list, container, itemRenderer) {
         this.render();
       }
     }
+
+    // build internal list of itemRenderer objects?
+
+
     return ListRenderer;
 }
 

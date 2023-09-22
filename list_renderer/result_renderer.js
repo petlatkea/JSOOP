@@ -6,7 +6,8 @@ const disciplines = {
 };
 
 export const ResultRenderer = {
-    render(result) {
+    render() {
+        const result = this.item;
         const html = /*html*/ `
         <tr>
             <td>${result.date.toLocaleString("da", {
@@ -19,7 +20,16 @@ export const ResultRenderer = {
             <td>${disciplines[result.discipline]}</td>
             <td>${result.isTraining ? "træning" : "stævne"}</td>
             <td>${result.getTimeString()}</td>
+            <td><button data-action="delete">delete</button></td>
         </tr>`;
     return html;
     },
+    postRender(element) {
+        element.querySelector("[data-action='delete']").addEventListener("click", this.deleteResult.bind(this));
+    },
+    deleteResult() {
+        console.log(this);
+        console.log("Delete result: " + this.item.id);
+        // TODO: Call external function to delete a result
+    }
 };

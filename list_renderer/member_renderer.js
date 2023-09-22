@@ -1,5 +1,6 @@
 export const MemberRenderer = {
-    render(member) {
+    render() {
+        const member = this.item;
         const html = /*html*/`
             <tr>
               <td>${member.name}</td>
