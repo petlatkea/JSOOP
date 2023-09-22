@@ -24,6 +24,9 @@ export function construct(memberdata) {
     },
     get isSenior() {
       return this.age >= 18;
+    },
+    get group() {
+      return this.isJunior ? "junior" : "senior";
     }
   }
 

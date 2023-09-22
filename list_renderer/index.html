@@ -11,22 +11,46 @@
   <h1>Medlemmer og Resultater</h1>
 
   <div id="tabs">
-    <h2 data-tab-show="members">Medlemmer</h2>
-    <h2 data-tab-show="results">Resultater</h2>
-    <table id="members" class="hide">
-      <thead>
-        <tr>
-          <th data-action="sort" data-sort-by="name">Navn</th>
-          <th data-action="sort" data-sort-by="active">Aktiv</th>
-          <th data-action="sort" data-sort-by="birthday">Fødselsdag</th>
-          <th data-action="sort" data-sort-by="age">Alder</th>
-          <th data-action="sort" data-sort-by="isJunior">Gruppe</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <h2 data-tab-show="members-tab">Medlemmer</h2>
+    <h2 data-tab-show="results-tab">Resultater</h2>
+    <div id="members-tab" class="hide">
+      Filters: <label><input type="checkbox" name="filter-active" data-filter="active" data-action="filter" >Vis kun aktive</label>
+      <select name="filter-group" data-action="filter" data-filter="group">
+        <option value="all">alle</option>
+        <option value="junior">juniorer</option>
+        <option value="senior">seniorer</option>
+      </select>
+      <table id="members" >
+        <thead>
+          <tr>
+            <th data-action="sort" data-sort-by="name">Navn</th>
+            <th data-action="sort" data-sort-by="active">Aktiv</th>
+            <th data-action="sort" data-sort-by="birthday">Fødselsdag</th>
+            <th data-action="sort" data-sort-by="age">Alder</th>
+            <th data-action="sort" data-sort-by="isJunior">Gruppe</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+  
+    </div>
 
-    <table id="results" class="hide">
+    <div id="results-tab" class="hide">
+      Filters: <label>Disciplin: <select data-action="filter" data-filter="discipline">
+        <option value="all">-</option>
+        <option value="breaststroke">bryst</option>
+        <option value="backstroke">ryg</option>
+        <option value="butterfly">butterfly</option>
+        <option value="freestyle">freestyle</option>
+      </select></label>
+      <label>Type: <select data-action="filter" data-filter="type">
+        <option value="all">-</option>
+        <option value="competition">stævne</option>
+        <option value="training">træning</option>
+      </select></label>
+
+    <table id="results" >
+
       <thead>
         <tr>
           <th data-action="sort" data-sort-by="date">Dato</th>
@@ -38,7 +62,7 @@
       </thead>
       <tbody></tbody>
     </table>
-
+  </div>
 
   </div>
 

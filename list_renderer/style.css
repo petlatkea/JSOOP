@@ -27,12 +27,16 @@ body {
   border-bottom: 1px solid black;
 }
 
-#tabs table {
+#tabs div {
   padding: 1em;
   background-color: #666;
   grid-area: 2 / 1 / 2 / 3 ;
   border: 1px solid black;
   border-top: none;
+}
+
+#tabs table {
+  width: 100%;
 }
 
 .hide {

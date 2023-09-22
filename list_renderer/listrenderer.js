@@ -8,7 +8,15 @@ export function construct(list, container, itemRenderer) {
         this.container.innerHTML = "";
       },
       render() {
-        for(const renderer of this.renderers) {
+
+        // always perform filtering before render
+        let renderers = this.renderers;
+        
+        if( this.filterProperty && this.filterProperty != "") {
+            renderers = renderers.filter(renderer => this.filterValue === "all" || this.filterValue == renderer.item[this.filterProperty] );
+        }
+
+        for(const renderer of renderers) {
             const html = renderer.render();
             
             this.container.insertAdjacentHTML("beforeend", html);
@@ -19,6 +27,18 @@ export function construct(list, container, itemRenderer) {
             }
         }
       },
+      
+      filterProperty: "",
+      filterValue: "",
+      filter(filterProperty, filterValue) {
+        console.log(`Set filter ${filterProperty} til ${filterValue}`);
+        this.filterProperty = filterProperty;
+        this.filterValue = filterValue;
+
+        this.clear();
+        this.render();
+      },
+
       sortBy: undefined,
       sortDir: "asc",
       sort(sortBy) {

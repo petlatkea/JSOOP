@@ -34,7 +34,25 @@ async function initApp() {
   document.querySelectorAll("table#results thead [data-action=sort]")
   .forEach(sortButton => sortButton.addEventListener("click", ()=>{
     resultList.sort(sortButton.dataset.sortBy);
-  }))
+  }));
+
+  // enable filter-buttons
+  document.querySelectorAll("#members-tab [data-action=filter]")
+  .forEach(filterButton => filterButton.addEventListener("change", () => {
+    // if filterButton is a checkbox, don't use value, but checked!
+    if(filterButton.type === "checkbox") {
+      // TODO: Ikke så smart at den altid filtrerer på false ... 
+      memberList.filter(filterButton.dataset.filter, filterButton.checked);  
+    } else {
+      memberList.filter(filterButton.dataset.filter, filterButton.value);
+    }
+  }));
+
+  document.querySelectorAll("#results-tab [data-action=filter]")
+  .forEach(filterButton => filterButton.addEventListener("change", () => {
+    resultList.filter(filterButton.dataset.filter, filterButton.value);
+  }));
+  
 
   window.results = results;
   window.members = members;
