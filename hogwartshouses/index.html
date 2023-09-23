@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hogwarts</title>
+  <style>
+    th { cursor: pointer;}
+  </style>
+</head>
+<body>
+  <h1>Hogwarts</h1>
+  
+  <button>Add new student</button>
+  <table id="students">
+    <thead>
+      <tr>
+        <th id="sort-firstname">first name</th>
+        <th id="sort-middlename">middle name</th>
+        <th id="sort-lastname">last name</th>
+        <th id="sort-house">house</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <dialog id="newstudent">
+    <form action="" id="create-student-form">
+      <label for="fullname">Name:</label><input type="text" name="fullname" id="fullname">
+      <label for="house">House:</label><input type="text" name="house" id="house">
+      <button>Create</button>
+    </form>
+  </dialog>
+
+  <script src="index.js" type="module"></script>
+</body>
+</html>
